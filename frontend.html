@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        #mainn{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            margin-top: 100px;
+            width: 100%;
+            height: auto;
+            border: 1px solid green;
+            gap: 20px;
+        }
+        #mainn>div{
+            padding: 20px;
+            border: 1px solid black;
+        }
+        #mainn>div>img:nth-child(1){
+            width: 100%;
+            height: 50%;
+        }
+        #mainn>div>img:nth-child(4){
+            width: 60%;
+            height: 30%;
+            display: block;
+            align-items: center;
+            margin: auto;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Frontend</h1>
+    <div id="mainn">
+
+    </div>
+</body>
+</html>
+
+<script>
+    var arr = JSON.parse(localStorage.getItem("investordata"))
+    console.log(arr);
+
+    arr.forEach(function(elem){
+        var div = document.createElement("div");
+
+        var img1 = document.createElement("img")
+        img1.setAttribute("src",elem.image)
+        
+        var h3 = document.createElement("h3");
+        h3.innerText = elem.name
+
+        var p = document.createElement("p");
+        p.innerText = elem.role
+        var img2 = document.createElement("img");
+        img2.setAttribute("src",elem.logo);
+
+        var but = document.createElement("button");
+        but.innerText="delete";
+        but.addEventListener("click",deletee)
+
+        div.append(img1,h3,p,img2,but);
+        var main = document.querySelector("#mainn");
+        main.append(div);
+    })
+
+    function deletee() {
+        event.target.parentNode.remove();
+    }
+    
+
+
+</script>
